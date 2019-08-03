@@ -26,7 +26,6 @@ function init() {
     $('#Demineur').height(lines * 21 + 52);
     $('#score-bomb-count').html(("00" + nbFlags).slice(-3));
 
-    //init table
     for (var i = 0; i < lines; i++) {
         arrayMines[i] = new Array();
         for (var j = 0; j < columns; j++) {
@@ -51,8 +50,7 @@ function init() {
 }
 
 function clickMine(i, j) {
-    //alert ("Clicked: "+i+";"+j);
-    //remove flag
+  
     if (arrayMines[i][j] > 1) {
         switchFlag(i, j);
     } else if (arrayMines[i][j] == 1) {
@@ -60,7 +58,7 @@ function clickMine(i, j) {
         timer = false;
         showBombs();
         alert("BOOM !");
-        //init();
+
     } else {
         $("#" + i + "_" + j).addClass("active");
         $("#" + i + "_" + j).attr('onclick', '');
@@ -71,7 +69,6 @@ function clickMine(i, j) {
         for (var y = Math.max(0, j - 1); y <= Math.min(columns - 1, j + 1); y++)
         if (arrayMines[x][y] < 2 && !$("#" + x + "_" + y).hasClass('active')) clickMine(x, y);
 
-        // Test victory
         checkVictory();
     }
 }
